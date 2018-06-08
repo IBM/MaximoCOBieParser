@@ -1,7 +1,7 @@
 # Maximo COBie Parser
-The COBie parser provides support for reading and writing Ecel spreadsheets that implement the [COBie Standard](https://www.nibs.org/?page=bsa_cobie).  Input files may be in .xls .xlsx format, or .csv formate with each file being a single COBIe table.  It is intended to be embedded in a larger applcation.  Reading the COBie files produces an in-memory parser tree that must then be processed by the controling applcation. All cross-table references are resolved and expressed as Java object references.
+The COBie parser provides support for reading and writing Ecel spreadsheets that implement the [COBie Standard](https://www.nibs.org/?page=bsa_cobie).  Input files may be in .xls .xlsx format, or .csv format with each file being a single COBIe table.  It is intended to be embedded in a larger application.  Reading the COBie files produces an in-memory parser tree that must then be processed by the controling applcation. All cross-table references are resolved and expressed as Java object references.
 
-The reverse is also possible:  The controling applcation can build the parse tree from its data, then call the parse export method to write a .xls or .xlsx COBie format file.
+The reverse is also possible:  The controling application can build the parse tree from its data, then call the parse export method to write a .xls or .xlsx COBie format file.
 
 ## Features
 
@@ -14,7 +14,7 @@ The reverse is also possible:  The controling applcation can build the parse tre
 	- Attributes that have the same name but different value lists
 	If the parse is merging multiple files, that validation is performed on the result of the merge.
 
-- **Merge:** Any number of COBie files may be specified on input.  The input is treated as if all the data was contained in a singel file.  Excpet, when entries with duplicate names are encountered in more than one file, they are merged.  The first instance encountered takes precidence for base values and reference against any of the duplicates are resolved to the merged record.  This is parturaly useful for merging rooms from architectural models with spaces from MEP models.
+- **Merge:** Any number of COBie files may be specified on input.  The input is treated as if all the data was contained in a single file.  Except, when entries with duplicate names are encountered in more than one file, they are merged.  The first instance encountered takes precedence for base values and reference against any of the duplicates are resolved to the merged record.  This is particularly useful for merging rooms from architectural models with spaces from MEP models.
 
 - **Filters:** Filters can be applied against the name columm of any COBie table.  The filter is an expression match between the filter string and the value of the name column.  There are three type of matching expressions:
 
@@ -41,9 +41,9 @@ The reverse is also possible:  The controling applcation can build the parse tre
 
 	Filters are applied immediately upon reading a row from the input file so use of filters can reduce memory usage.
 
-- **Special attribute processing:** It has been observed over the years that many of the attbutes containe data that is germaine to the structure of the COBie file.  Historically many of these were not prcessed by export tools.  The current generation of tools is much better, however the feture remains in the parser. 
+- **Special attribute processing:** It has been observed over the years that many of the attributes contain data that is germaine to the structure of the COBie file.  Historically many of these were not prcessed by export tools.  The current generation of tools is much better, however the future remains in the parser. 
 	
-	The following special processing can be preformed on attributes:
+	The following special processing can be performed on attributes:
 
 	-	Level Attribute:  Each item in the Space and the Component page is searched for the named attribute.  If it is found it is assumed to be the attribute that has a level reference. For each component that has an instance of that attribute type, an attempt is made to resolve the value of the attribute as a floor reference.  If it succeeds, and if the component does not have a valid space reference, then the component is associated with that floor.
 
