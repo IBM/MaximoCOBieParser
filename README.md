@@ -1,20 +1,20 @@
 # Maximo COBie Parser
-The COBie parser provides support for reading and writing Ecel spreadsheets that implement the [COBie Standard](https://www.nibs.org/?page=bsa_cobie).  Input files may be in .xls .xlsx format, or .csv formate with each file being a single COBIe table.  It is intended to be embedded in a larger applcation.  Reading the COBie files produces an in-memory parser tree that must then be processed by the controling applcation. All cross-table references are resolved and expressed as Java object references.
+The COBie parser provides support for reading and writing Excel spreadsheets that implement the [COBie Standard](https://www.nibs.org/?page=bsa_cobie).  Input files may be in .xls .xlsx format, or .csv formate with each file being a single COBIe table.  It is intended to be embedded in a larger applcation.  Reading the COBie files produces an in-memory parser tree that must then be processed by the controlling application. All cross-table references are resolved and expressed as Java object references.
 
-The reverse is also possible:  The controling applcation can build the parse tree from its data, then call the parse export method to write a .xls or .xlsx COBie format file.
+The reverse is also possible:  The controlling application can build the parse tree from its data, then call the parse export method to write a .xls or .xlsx COBie format file.
 
 ## Features
 
-- **COBie file Validation:** The parse can run in vladiate mode. WHen it does, it messages about internal structure issues including:
+- **COBie file Validation:** The parse can run in validate mode. WHen it does, it messages about internal structure issues including:
 	- Missing and duplicate names
 	- Missing and invalid references
-	- Components that reference multiple spaces. This is legal in COBie, but Maximo only prcesses the first valid reference
+	- Components that reference multiple spaces. This is legal in COBie, but Maximo only processes the first valid reference
 	- Job taks numbers and references.
 	- Attributes whoes value is their name.  This typically means the value was never set.
 	- Attributes that have the same name but different value lists
 	If the parse is merging multiple files, that validation is performed on the result of the merge.
 
-- **Merge:** Any number of COBie files may be specified on input.  The input is treated as if all the data was contained in a singel file.  Excpet, when entries with duplicate names are encountered in more than one file, they are merged.  The first instance encountered takes precidence for base values and reference against any of the duplicates are resolved to the merged record.  This is parturaly useful for merging rooms from architectural models with spaces from MEP models.
+- **Merge:** Any number of COBie files may be specified on input.  The input is treated as if all the data was contained in a single file.  Except, when entries with duplicate names are encountered in more than one file, they are merged.  The first instance encountered takes precidence for base values and reference against any of the duplicates are resolved to the merged record.  This is particularly useful for merging rooms from architectural models with spaces from MEP models.
 
 - **Filters:** Filters can be applied against the name columm of any COBie table.  The filter is an expression match between the filter string and the value of the name column.  There are three type of matching expressions:
 
